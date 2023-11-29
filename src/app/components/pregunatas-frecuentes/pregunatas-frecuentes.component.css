@@ -1,0 +1,27 @@
+/* Estilos para el contenedor principal */
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Separación entre los elementos */
+  }
+  
+  /* Estilos para cada ítem del acordeón */
+  .accordion-item {
+    background-color: #fff; /* Color de fondo blanco */
+    border: 1px solid #ccc; /* Borde delgado de color gris claro */
+    border-radius: 8px; /* Bordes redondeados */
+    overflow: hidden; /* Evitar que el contenido se desborde */
+  }
+  
+  /* Estilos para el encabezado del acordeón */
+  .accordion-header {
+    padding: 10px; /* Espaciado interno */
+    cursor: pointer; /* Cursor de apuntar al pasar el ratón */
+    user-select: none; /* Evitar la selección de texto al hacer clic */
+  }
+  
+  /* Estilos para el contenido del acordeón */
+  .accordion-content {
+    padding: 10px; /* Espaciado interno */
+  }
+  

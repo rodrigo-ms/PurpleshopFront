@@ -1,0 +1,33 @@
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top" style="background: #4a38e9;">
+    <div class="container d-flex align-items-center justify-content-between">
+      <h1 class="logo"><a href="index.html">Purple Shop</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
+          <li><a class="nav-link scrollto" href="#about">Quines somos </a></li>
+          <li><a class="nav-link scrollto " href="#portfolio">Productos</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contacto</a></li>
+          <li><a class="nav-link scrollto" href="#">Carrito</a></li>
+         
+          <li>
+            <div class="dropdown">
+              <button type="button" class="btn btn-danger"  (click)="toggleDropdown()">Mi cuenta</button>
+              <div *ngIf="isDropdownOpen" class="dropdown-menu">
+              <a routerLink="/login">Login</a>
+              <a routerLink="/registro">Registro</a>
+              </div>
+          </div>
+          </li>
+          <li>
+            <button *ngIf="isAuthenticated" type="button" (click)="logout()" class="btn btn-danger" style="margin-left: 30%; background-color: red;">Salir</button>          </li>
+
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->

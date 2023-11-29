@@ -1,0 +1,26 @@
+<app-header></app-header>
+<body style="background-color: rgb(227, 217, 238);">
+    <div style=" padding-top: 160px; display: flex; justify-content: center; padding-bottom: 90px;" >
+        <div style="width: 350px; padding: 20px; border: 2px solid black; border-radius: 10px;">
+            <h2>Login de usuario</h2>
+            <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="text" class="form-control" formControlName="email">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" formControlName="password">
+                </div>
+                <input class="btn btn-success" style="margin-bottom: 20px;" type="submit" value="Enviar">
+            </form>
+    
+            <button class="btn btn-info" (click)="onClick()">
+                <img src="../../../assets/img/google.png" alt="Google Logo" style="width: 20px; height: 20px; margin-right: 10px;">
+                Registrarme con Google
+              </button>        </div>
+    </div>
+    
+    <app-footer></app-footer>
+</body>
+
