@@ -7,4 +7,5 @@ export const environment = {
     authDomain: 'purpleshop-6b764.firebaseapp.com',
     messagingSenderId: '645210549196',
   },
+
 };

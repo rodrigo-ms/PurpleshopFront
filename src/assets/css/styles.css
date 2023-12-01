@@ -1,4 +1,7 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+/* styles.css */
+/* styles.css */
+
 
 body{
   background-color: rgb(255, 255, 255);
@@ -497,6 +500,10 @@ body {
 .clients img {
   transition: all 0.3s ease-in-out;
 }
+
+
+
+
 
 
 

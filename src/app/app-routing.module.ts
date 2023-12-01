@@ -5,6 +5,7 @@ import { AdministradorComponent } from './pages/administrador/administrador.comp
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { CarritoComponent } from './pages/carrito/carrito.component';
 import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
 
@@ -18,6 +19,8 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent }, 
   { path: 'registro', component: RegistroComponent },
+  { path: 'carrito', component: CarritoComponent },
+
   { path: '**', component: NotFoundComponent },
 
 

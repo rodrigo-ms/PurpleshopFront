@@ -25,6 +25,9 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { ProductosComponent } from './components/productos/productos.component';
+import { CarritoComponent } from './pages/carrito/carrito.component';
+
 
 @NgModule({
   declarations: [
@@ -42,15 +45,18 @@ import { AdminPanelComponent } from './components/admin-panel/admin-panel.compon
     RegistroComponent,
     AdministradorComponent,
     NotFoundComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    ProductosComponent,
+    CarritoComponent
   ],
   imports: [
     BrowserModule,
     
     AppRoutingModule,
     NgbModule,
-    ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

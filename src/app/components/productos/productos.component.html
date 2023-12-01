@@ -1,0 +1,43 @@
+
+
+
+      <section id="portfolio" class="portfolio section-bg">
+        <div class="container">
+          <div class="section-title">
+            <h2 data-aos="fade-in" style="text-align: center; margin-top: 60px;" >Productos</h2>
+            <p data-aos="fade-in" style="text-align: center;" >Todos los productos visibles en el catálogo cuentan con stock disponible.</p>
+          </div>
+      
+          <div class="row">
+            <div class="col-lg-12">
+              <ul id="portfolio-flters" class="text-center">
+                <li (click)="filterProducts('all')" [ngClass]="{ 'filter-active': currentFilter === 'all' }">Todo</li>
+                <li (click)="filterProducts('facial')" [ngClass]="{ 'filter-active': currentFilter === 'facial' }">Facial</li>
+                <li (click)="filterProducts('corporal')" [ngClass]="{ 'filter-active': currentFilter === 'corporal' }">Corporal</li>
+                <li (click)="filterProducts('dental')" [ngClass]="{ 'filter-active': currentFilter === 'dental' }">Dental</li>
+                <li (click)="filterProducts('capilar')" [ngClass]="{ 'filter-active': currentFilter === 'capilar' }">Capilar</li>
+              </ul>
+            </div>
+          </div>
+      
+          <div class="row portfolio-container" data-aos="fade-up">
+            <div *ngFor="let producto of listaProductos" class="col-lg-4 col-md-6 portfolio-item" [ngClass]="{ 'filter-facial': producto.categoria === 'facial', 'filter-corporal': producto.categoria === 'corporal', 'filter-dental': producto.categoria === 'dental', 'filter-capilar': producto.categoria === 'capilar' }">
+              <div class="portfolio-wrap">
+                <img src="assets/img/producto.jpg" class="img-fluid" alt="{{ producto.nombre }}">
+                <div class="portfolio-links">
+                    
+                  <a src="assets/img/producto.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" [title]="producto.nombre"><i class="bi bi-plus"></i></a>
+                  <!-- Puedes agregar más enlaces según sea necesario -->
+                </div>
+                <div class="portfolio-info">
+                  <h4>${{ producto.precio}}</h4>
+                  <p>{{ producto.nombre }}</p>
+                  <p>{{ producto.descripcion }}</p>
+                  <button  style="margin-bottom: 10px;" (click)="addCar(producto)" class="btn-add-to-cart">Agregar al Carrito</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      

@@ -11,14 +11,20 @@
           <li><a class="nav-link scrollto" href="#about">Quines somos </a></li>
           <li><a class="nav-link scrollto " href="#portfolio">Productos</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contacto</a></li>
-          <li><a class="nav-link scrollto" href="#">Carrito</a></li>
+          <li><a class="nav-link scrollto" routerLink="/carrito">Carrito</a></li>
+         
          
           <li>
             <div class="dropdown">
               <button type="button" class="btn btn-danger"  (click)="toggleDropdown()">Mi cuenta</button>
               <div *ngIf="isDropdownOpen" class="dropdown-menu">
+                <div *ngIf="tipoUsuario === 'administrador'">
+                  <a routerLink="/admin">Administracion 💻</a>
+                </div>
               <a routerLink="/login">Login</a>
               <a routerLink="/registro">Registro</a>
+              <a *ngIf="isAuthenticated">{{ userEmail }}</a>
+
               </div>
           </div>
           </li>

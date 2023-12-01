@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut, GoogleAuthProvider, User } from '@angular/fire/auth';
 import { BehaviorSubject } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -37,5 +38,8 @@ export class AuthService {
     this.auth.onAuthStateChanged((user: User | null) => {
       this._isAuthenticated.next(!!user);
     });
+  }
+  getUserInfo(): User | null {
+    return this.auth.currentUser;
   }
 }
