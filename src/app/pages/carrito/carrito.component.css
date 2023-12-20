@@ -32,3 +32,77 @@
     border-radius: 4px;
     cursor: pointer;
   }
+
+
+  .product-list {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-list label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .product-list input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+  
+  .product-list input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.25);
+  }
+  
+  .product-list button {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .product-list button:hover {
+    background-color: #218838;
+  }
+  
+
+
+
+
+
+
+  /* Estilos para el contenedor principal */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Separación entre los elementos */
+}
+
+/* Estilos para cada ítem del acordeón */
+.accordion-item {
+  background-color: #fff; /* Color de fondo blanco */
+  border: 1px solid #ccc; /* Borde delgado de color gris claro */
+  border-radius: 8px; /* Bordes redondeados */
+  overflow: hidden; /* Evitar que el contenido se desborde */
+}
+
+/* Estilos para el encabezado del acordeón */
+.accordion-header {
+  padding: 10px; /* Espaciado interno */
+  cursor: pointer; /* Cursor de apuntar al pasar el ratón */
+  user-select: none; /* Evitar la selección de texto al hacer clic */
+}
+
+/* Estilos para el contenido del acordeón */
+.accordion-content {
+  padding: 10px; /* Espaciado interno */
+}

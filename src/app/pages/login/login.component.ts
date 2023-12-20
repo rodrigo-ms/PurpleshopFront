@@ -29,10 +29,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  
   async onSubmit() {
     try {
       const response = await this.authService.login(this.formLogin.value);
-      console.log(response);
+      console.log('mensaje',response);
   
       // Redirecciona a la página principal
       this.router.navigate(['/']);

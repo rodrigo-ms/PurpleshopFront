@@ -14,15 +14,18 @@ export class ProductosComponent implements OnInit {
   constructor(private productoService: ProductoService,private carritoService: CarritoService) {}
 
   ngOnInit(): void {
-    this.productoService.getProducts()
-      .then((productos: any) => {
-        console.log(productos);
-        this.listaProductos = productos;
-      })
-      .catch(error => {
-        console.error('Error al obtener productos:', error);
-      });
+    this.productoService.getproductos()
+      .subscribe(
+        (productos: Producto[]) => {
+          console.log(productos);
+          this.listaProductos = productos;
+        },
+        (error: any) => {
+          console.error('Error al obtener productos:', error);
+        }
+      );
   }
+  
   // Método para aplicar filtros
   filterProducts(categoria: string): void {
     this.currentFilter = categoria;

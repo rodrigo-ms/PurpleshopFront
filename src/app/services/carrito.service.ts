@@ -28,6 +28,7 @@ export class CarritoService {
 
   agregarAlCarrito(producto: Producto): void {
     const index = this.carrito.findIndex((venta) => venta.producto.id === producto.id);
+    console.log(producto.id)
 
     if (index !== -1) {
       // Si el producto ya está en el carrito, incrementa la cantidad

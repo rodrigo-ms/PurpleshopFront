@@ -1,35 +1,149 @@
 
 <app-header></app-header>
- <!-- Sección de tabla para listar y editar/eliminar productos -->
-<!-- carrito.component.html -->
-<div style="margin-top: 200px; padding-left: 100px; margin-bottom: 100px;" class="product-list">
-    <h2 style="text-align: center;">Listado de Productos</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Cantidad</th>
-          <th>Precio</th>
-          <th>opciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let venta of obtenerVentas(); let i = index">
-          <td>{{ venta.producto.nombre }}</td>
-          <td>{{ venta.cantidad }}</td>
-          <td>{{ venta.producto.precio }}</td>
-          <td><button style="background-color: red;" (click)="eliminarProducto(i)">Eliminar</button></td>
-        </tr>
-      </tbody>
-    </table>
-  
-    <!-- Apartado para mostrar el total y el botón de pagar -->
-    <div style="margin-top: 20px; text-align: right;">
+
+
+
+<!-- contenedor  1-->
+<div class="container" >
+  <div class="row" style="padding-top: 130px;">
+    <!-- elemento 1-->
+    <div class="col-md-6" >
+      <h2 style="text-align: center;">Listado de Productos</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let venta of obtenerVentas(); let i = index">
+            <td>{{ venta.producto.nombre }}</td>
+            <td>{{ venta.cantidad }}</td>
+            <td>{{ venta.producto.precio }}</td>
+            <td><button style="background-color: red;" (click)="eliminarProducto(i)">Eliminar</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+             <!-- Apartado para mostrar el total y el botón de pagar -->
+    <div style=" text-align: center; margin-top: 20px;">
       <h3>Total: ${{ calcularTotal()  }}</h3>
-      <button (click)="pagar()" class="btn-pagar" style="border: solid 2px rgb(0, 0, 0); ;  background-color: rgb(17, 165, 42);">Pagar</button>
+      <button (click)="pagar()" class="btn-pagar" style="border: solid 2px rgb(0, 0, 0); ;  background-color: rgb(17, 165, 54);">Comprar</button>
       <button (click)="vaciarCarrito()" class="btn-vaciar" style="border: solid 2px rgb(0, 0, 0); background-color: rgb(255, 220, 24);  color:black ;" >Vaciar Carrito</button>
+
+     </div>
+
+    </div>
+
+    <!-- elemento 2-->
+    <div class="col-md-6">
+
+
+      <div class="card bg-warning mb-3" style="max-width: 18rem; " >
+        <div class="card-header">Informacion Importante</div>
+        <div class="card-body">
+          <h5 class="card-title">Metodo de pago</h5>
+          <p class="card-text">
+            Por el momento para realizar la compra puedes transferirnos directamente desde la app de tu banco a nuestra cuenta bancaria. una vez finalices la compra recibirás un correo con toda la información.        </p>
+            
+            <div class="faq-list">
+           
+              <div *ngFor="let item of accordionItems; let i = index">
+                  <div class="accordion-item">
+                    <div class="accordion-header" (click)="toggleAccordion(i)">
+                      {{ item.title }}
+                    </div>
+                    <div *ngIf="activeItem === i" class="accordion-content">
+                      <p>-Nombre: Maria Jose</p>
+                      <p>-Rut:20.353.505-1</p>
+                      <p>-Banco:Banco Estado   </p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+          </div>
+      </div>
+
+
+      
+
+
     </div>
   </div>
+</div>
+
+
+<!-- contenedor  2-->
+<div class="container" style="margin-top: 30px; padding-bottom: 30px;">
+  <div class="row">
+    <!-- elemento 1-->
+    <div class="col-md-6">
+
+      <div  class="product-list">
+        <div class="card-header">Datos de contacto</div>
+        <label>
+          Correo:
+          <input type="text" [(ngModel)]="correo" name="correo" />
+        </label>
+        
+        <label>
+          Teléfono:
+          <input type="text" [(ngModel)]="telefono" name="telefono" />
+        </label>
+        
+        <label>
+          Nombre Completo:
+          <input type="text" [(ngModel)]="nombreCompleto" name="nombreCompleto" />
+        </label>
+        </div>
+
+
+
+
+    </div>
+
+    <!-- elemento 2-->
+    <div class="col-md-6">
+      
+      
+
+   
+      <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header">Envio del comprobante</div>
+        <div class="card-body" >
+          <label>
+            <input  type="radio" name="envio"  (change)="registrarComprobante('enviado por Whatsapp')" />
+            Lo enviaré por Whatsapp
+          </label>
+          <label>
+            <input  type="radio" name="envio" (change)="registrarComprobante('enviado por correo')" />
+            Lo enviaré por Correo
+          </label>
+       
+      
+          <label>
+            <input  type="radio" name="envio"  (change)="registrarComprobante('enviado por Instagram')" />
+            Lo enviaré por Instagram
+          </label>
+        </div>
+        
+    
+  
+      </div>
+      
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
   
   
 

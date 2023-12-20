@@ -7,5 +7,4 @@ export interface Producto {
     stock:number;
     categoria:string;
     image:string;
-    cantidad:number;
 }

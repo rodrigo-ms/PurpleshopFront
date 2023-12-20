@@ -27,7 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -51,9 +52,10 @@ import { CarritoComponent } from './pages/carrito/carrito.component';
   ],
   imports: [
     BrowserModule,
-    
+    HttpClientModule, 
     AppRoutingModule,
     NgbModule,
+    FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     

@@ -3,6 +3,10 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signI
 import { BehaviorSubject } from 'rxjs';
 
 
+import {HttpClient,HttpHeaders} from'@angular/common/http';
+import { Global } from "./global";
+
+
 @Injectable({
   providedIn: 'root'
 })

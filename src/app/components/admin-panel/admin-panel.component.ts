@@ -14,7 +14,8 @@ import Swal from 'sweetalert2';
 })
 export class AdminPanelComponent implements OnInit {
   listaProductos: Producto[] = []; // Lista de productos
-  listaVentasEnEspera: Venta[]=[];
+  listaVentasEnEspera: Venta[] = [];
+  listaVentas: Venta[] = [];
   formulario:FormGroup;
 
   constructor(
@@ -33,16 +34,20 @@ export class AdminPanelComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productoService.getProducts()
-      .then(productos => {
-        
+    this.productoService.getproductos()
+      .toPromise()
+      .then((productos: any) => {
         this.listaProductos = productos;
       })
-      .catch(error => {
-       
+      .catch((error: any) => {
+        console.error('Error al obtener productos:', error);
       });
-      this.mostrarVentasEnEspera();
+  
+    this.mostrarVentasEnEspera();
+    this.mostrarVentas();
+
   }
+  
 
   agregarProducto(event: Event) {
     event.preventDefault(); // Evitar la recarga de la página por defecto
@@ -50,37 +55,38 @@ export class AdminPanelComponent implements OnInit {
   
     // Guardar el producto
     this.productoService.saveProduct(nuevoProducto)
-      .then(() => {
-        // Éxito al guardar el producto
-        
-        
-        // Muestra una alerta de éxito utilizando SweetAlert
-        Swal.fire({
-          title: 'Producto guardado',
-          text: 'El producto se ha guardado exitosamente.',
-          icon: 'success',
-          confirmButtonText: 'Ok'
-        });
+      .subscribe(
+        () => {
+          // Éxito al guardar el producto
   
-        // Limpiar el formulario después de guardar el producto
-        this.formulario.reset();
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
-      })
-      .catch(error => {
-        // Manejar errores al guardar el producto
-     
+          // Muestra una alerta de éxito utilizando SweetAlert
+          Swal.fire({
+            title: 'Producto guardado',
+            text: 'El producto se ha guardado exitosamente.',
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          });
   
-        // Muestra una alerta de error utilizando SweetAlert
-        Swal.fire({
-          title: 'Error al guardar el producto',
-          text: 'Ha ocurrido un error al intentar guardar el producto. Por favor, inténtalo de nuevo.',
-          icon: 'error',
-          confirmButtonText: 'Ok'
-        });
-      });
+          // Limpiar el formulario después de guardar el producto
+          this.formulario.reset();
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
+        },
+        (error) => {
+          // Manejar errores al guardar el producto
+  
+          // Muestra una alerta de error utilizando SweetAlert
+          Swal.fire({
+            title: 'Error al guardar el producto',
+            text: 'Ha ocurrido un error al intentar guardar el producto. Por favor, inténtalo de nuevo.',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          });
+        }
+      );
   }
+  
   
 
 
@@ -91,23 +97,22 @@ export class AdminPanelComponent implements OnInit {
 
   
 
-  async eliminarProducto(producto: any) {
+  async eliminarProducto(id: any) {
     try {
-      // Llama al servicio para eliminar el producto
-      const response = await this.productoService.deleteProduct(producto);
+      // Utiliza .toPromise() para convertir el Observable a una Promesa
+      const response = await this.productoService.deleteProduct(id).toPromise();
       
-  
-  
       // Muestra una alerta de éxito utilizando SweetAlert
       Swal.fire({
         title: 'Producto eliminado',
-        text: 'El producto se ha eliminado correctamente.',
+        text: response,
         icon: 'success',
         confirmButtonText: 'Ok'
-      });
-      setTimeout(() => {
+      });  setTimeout(() => {
         window.location.reload();
       }, 3000);
+      
+      // Otras acciones después de eliminar el producto, si es necesario
     } catch (error) {
       // Maneja el error y muestra una alerta de error utilizando SweetAlert
       console.error('Error al eliminar el producto:', error);
@@ -119,16 +124,75 @@ export class AdminPanelComponent implements OnInit {
       });
     }
   }
+  
+  
+
+
+
 
   async mostrarVentasEnEspera(): Promise<void> {
     try {
-      const ventasEnEspera = await this.ventaService.obtenerVentasEnEspera();
-      console.log(ventasEnEspera);
-       this.listaVentasEnEspera = ventasEnEspera;
+      this.ventaService.obtenerVentasEnEspera().subscribe(
+        (ventasEnEspera: Venta[]) => {
+          console.log(ventasEnEspera);
+          this.listaVentasEnEspera = ventasEnEspera;
+        },
+        error => {
+          console.error('Error al obtener ventas en espera:', error);
+        }
+      );
     } catch (error) {
       console.error('Error al obtener ventas en espera:', error);
     }
   }
+  
+
+  async mostrarVentas(): Promise<void> {
+    try {
+      this.ventaService.obtenerVentas().subscribe(
+        (ventas: Venta[]) => {
+          console.log(ventas);
+          this.listaVentas = ventas;
+        },
+        error => {
+          console.error('Error al obtener ventas:', error);
+        }
+      );
+    } catch (error) {
+      console.error('Error al obtener ventas:', error);
+    }
+  }
+
+
+  async actualizarEstadoVenta(idVenta: any, nuevoEstado: string): Promise<void> {
+    try {
+      // Utiliza el servicio para actualizar el estado de la venta
+      const responseText = await this.ventaService.actualizarEstadoVenta(idVenta, nuevoEstado).toPromise();
+  
+      // Muestra una alerta de éxito utilizando SweetAlert
+      Swal.fire({
+        title: 'Estado actualizado',
+        text: responseText, // Utiliza la respuesta directamente
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      });
+  
+      // Actualiza la lista de ventas en espera después de la actualización
+      this.mostrarVentasEnEspera();
+    } catch (error) {
+      // Maneja el error y muestra una alerta de error utilizando SweetAlert
+      console.error('Error al actualizar el estado de la venta:', error);
+      Swal.fire({
+        title: 'Error al actualizar el estado de la venta',
+        text: 'Ha ocurrido un error al intentar actualizar el estado de la venta. Por favor, inténtalo de nuevo.',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      });
+    }
+  }
+  
+
+ 
 
 
 }
